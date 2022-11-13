@@ -1,3 +1,8 @@
+package implementation;
+
+import models.Configuration;
+import models.Gene;
+
 import java.util.*;
 
 public class GeneticAlgorithm {

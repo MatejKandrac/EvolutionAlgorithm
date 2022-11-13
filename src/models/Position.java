@@ -1,3 +1,5 @@
+package models;
+
 public class Position {
 
     private int x = 0;
@@ -9,7 +11,7 @@ public class Position {
         this.y = y;
     }
 
-    boolean equals(Position position) {
+    public boolean isEqual(Position position) {
         return x == position.x && y == position.y;
     }
 

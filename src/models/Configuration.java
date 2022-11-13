@@ -1,3 +1,5 @@
+package models;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -10,7 +12,7 @@ public class Configuration {
     public static final int GENERATION_SIZE = 100;
     public static final int TREASURE_FITNESS_MULTIPLIER = 50;
     public static final double KEEP_ELITES_PERCENTAGE = 0.1; //%
-    public static final double MUTATION_CHANCE = 0.5; //%
+    public static final double MUTATION_CHANCE = 0.2; //%
     public static final int MAX_STEPS = 500;
     public static final int MEMORY_SIZE = 64;
     public static final int TOURNAMENT_CHILD_COUNT = 5;
@@ -43,7 +45,7 @@ public class Configuration {
         return startPosition;
     }
 
-    static Configuration loadConfiguration(String file) throws IOException {
+    public static Configuration loadConfiguration(String file) throws IOException {
         BufferedReader br = new BufferedReader(new FileReader(file));
         int size = Integer.parseInt(br.readLine());
         Position start = null;

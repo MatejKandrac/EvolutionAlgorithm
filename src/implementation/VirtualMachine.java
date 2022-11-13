@@ -1,3 +1,9 @@
+package implementation;
+
+import models.Configuration;
+import models.Gene;
+import models.Position;
+
 public class VirtualMachine {
 
     private short[] currentMemory;
@@ -48,7 +54,9 @@ public class VirtualMachine {
     private boolean collectTreasures() {
         int counter = 0;
         for (int i = 0; i < configuration.getTreasuresCount(); i++) {
-            if (configuration.getTreasures()[i].equals(currentPosition)) collectedTreasures[i] = true;
+            if (configuration.getTreasures()[i].isEqual(currentPosition)) {
+                collectedTreasures[i] = true;
+            }
             if (collectedTreasures[i]) counter++;
         }
         return counter == configuration.getTreasuresCount();
@@ -98,12 +106,8 @@ public class VirtualMachine {
                     currentPosition.updateX(-1);
                 }
                 stepCount++;
-                if (isOffScreen()) {
-                    return false;
-                }
-                if (collectTreasures()) {
-                    return false;
-                }
+                if (isOffScreen()) return false;
+                if (collectTreasures()) return false;
             }
             default: {}
         }

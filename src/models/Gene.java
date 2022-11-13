@@ -1,3 +1,4 @@
+package models;
 
 import java.util.Arrays;
 import java.util.Random;
@@ -19,7 +20,7 @@ public class Gene {
         this.fitness = fitness;
         this.data = data;
     }
-    Gene copy(){
+    public Gene copy(){
         return new Gene(fitness, Arrays.copyOf(data, Configuration.MEMORY_SIZE));
     }
 
