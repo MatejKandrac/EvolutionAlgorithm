@@ -34,14 +34,19 @@ public class VirtualMachine {
         for (int i = 0; i < Configuration.MAX_STEPS; i++) {
             if (!step()) break;
         }
-        data.setFitnessData(getFitness(), steps);
+        int collectedTreasures = getCollectedTreasuresCount();
+        data.setData(collectedTreasures, getFitness(collectedTreasures), steps);
     }
-    public int getFitness() {
-        int base = 0;
+    public int getFitness(int collectedTreasures) {
+        return collectedTreasures * Configuration.TREASURE_FITNESS_MULTIPLIER - stepCount;
+    }
+
+    private int getCollectedTreasuresCount() {
+        int count = 0;
         for (boolean collectedTreasure : collectedTreasures) {
-            if (collectedTreasure) base += 1;
+            if (collectedTreasure) count += 1;
         }
-        return base * Configuration.TREASURE_FITNESS_MULTIPLIER - stepCount;
+        return count;
     }
 
     private boolean isOffScreen() {

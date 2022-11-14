@@ -7,6 +7,7 @@ public class Gene {
 
     private int fitness = Integer.MIN_VALUE;
     private String path = "";
+    private int collectedTreasures = 0;
     private short[] data = new short[Configuration.MEMORY_SIZE];
 
     public Gene(){
@@ -16,12 +17,13 @@ public class Gene {
         }
     }
 
-    public Gene(int fitness, short[] data) {
+    public Gene(int collectedTreasures, int fitness, short[] data) {
+        this.collectedTreasures = collectedTreasures;
         this.fitness = fitness;
         this.data = data;
     }
     public Gene copy(){
-        return new Gene(fitness, Arrays.copyOf(data, Configuration.MEMORY_SIZE));
+        return new Gene(0, fitness, Arrays.copyOf(data, Configuration.MEMORY_SIZE));
     }
 
     public int getFitness() {
@@ -36,13 +38,18 @@ public class Gene {
         return path;
     }
 
-    public void setFitnessData(int fitness, String path) {
+    public void setData(int collectedTreasures, int fitness, String path) {
+        this.collectedTreasures = collectedTreasures;
         this.fitness = fitness;
         this.path = path;
     }
 
+    public int getCollectedTreasures() {
+        return collectedTreasures;
+    }
+
     @Override
     public String toString() {
-        return "PATH: " + path + "\nFITNESS: " + fitness;
+        return "PATH: " + path + "\nFITNESS: " + fitness + "\nCollected treasures: " + collectedTreasures;
     }
 }

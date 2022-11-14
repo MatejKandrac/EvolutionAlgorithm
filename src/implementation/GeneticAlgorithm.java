@@ -36,7 +36,7 @@ public class GeneticAlgorithm {
         if (rn.nextInt(100) < Configuration.MUTATION_CHANCE * 100) {
             geneData[rn.nextInt(Configuration.MEMORY_SIZE)] = (short) rn.nextInt(255);
         }
-        return new Gene(Integer.MIN_VALUE, geneData);
+        return new Gene(0, Integer.MIN_VALUE, geneData);
     }
 
     private Gene getNewChild(List<Gene> population) {
@@ -63,7 +63,7 @@ public class GeneticAlgorithm {
                 if (original.getFitness() == Integer.MIN_VALUE){
                     Gene currentGene = original.copy();
                     virtualMachine.launch(currentGene);
-                    original.setFitnessData(currentGene.getFitness(), currentGene.getPath());
+                    original.setData(currentGene.getCollectedTreasures(), currentGene.getFitness(), currentGene.getPath());
                 }
                 ratedPopulation.add(original);
             }
